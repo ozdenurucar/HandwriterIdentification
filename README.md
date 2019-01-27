@@ -17,3 +17,10 @@ Yazar tanıma üzerinde birçok yöntem geliştirilmiş  ve test edilmiştir.
 DeepWriter: Metin Bağımsız Yazar Kimlik Doğrulama için Çok Akışlı Derin CNN
 
 
+Off-line yazar tanımlaması için yöntemler iki gruba ayrılabilir: metne bağımlı ve metinden bağımsız. metin bağımlı yöntemler;
+Metin bağımlı: Tüm yazarların aynı metni yazması gerekmekte.
+Metin bağımsız: Hiçbir kısıtlama yok. Eğitim ve test için yazara ait herhangi elyazısı olması yeterli.
+Bununla birlikte, metne bağımlı bir metinle karşılaştırıldığında, metinden bağımsız yazar tanımlaması, görüntünün devasa kategoriler arası çeşitlilik sergileyen keyfi metinlerle uğraşması gerekir ve bu nedenle de daha zorlayıcıdır. 
+Bu zorlu soruna hitap etmek için, bu yazı, off-line metin bağımsız yazar tanımlaması için etkili sunumları öğrenmek için güçlü bir model olarak Deep CNN (Convolutional Neural Network) kullanmaktadır. 
+
+
