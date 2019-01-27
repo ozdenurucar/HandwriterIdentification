@@ -14,3 +14,6 @@ Yazar kimliği, adli tıp alanındaki yazılarda olduğu gibi, yazıların eskil
 Yazar tanıma üzerinde birçok yöntem geliştirilmiş  ve test edilmiştir. 
 
 
+DeepWriter: Metin Bağımsız Yazar Kimlik Doğrulama için Çok Akışlı Derin CNN
+
+
