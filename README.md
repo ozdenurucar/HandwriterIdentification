@@ -24,3 +24,7 @@ Bununla birlikte, metne bağımlı bir metinle karşılaştırıldığında, met
 Bu zorlu soruna hitap etmek için, bu yazı, off-line metin bağımsız yazar tanımlaması için etkili sunumları öğrenmek için güçlü bir model olarak Deep CNN (Convolutional Neural Network) kullanmaktadır. 
 
 
+Deep CNN yapısı, en yeni bilgisayar görüntü problemlerinde, görüntü sınıflandırması, nesne algılama ve  yüz tanıma  dahil olmak üzere büyük bir etki göstermiştir. 
+
+El yazısı tanıma  vb. yazarlar arası tanımlama özelliklerini ayıklamak için çok kanallı bir CNN olan DeepWriter'i öneriyoruz. 
+
