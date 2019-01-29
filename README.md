@@ -34,3 +34,4 @@ Ayrılan satırlardan 113x113 boyutlarında parçalar çıkartılarak eğitim ve
 Ayrılan 113x113 boyutundaki parçalar resize() fonksiyonu ile program içerisinde 56x56 olarak yeniden boyutlandırılır. 
 Buradaki amaç hespalamayı kolaylaştırmaktır.
 
+![](https://github.com/ozdenurucar/HandwriterIdentification/blob/master/Images/patchs.png)
