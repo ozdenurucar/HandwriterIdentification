@@ -109,5 +109,19 @@ for filename in img_files[:3]:
 
 Kategorik veri olmadığını görmek güzel. Böylece normalizasyon etiket kodlayıcı kullanılarak yapılır.
 
+```
+train_files, rem_files, train_targets, rem_targets = train_test_split(
+        img_files, encoded_Y, train_size=0.66, random_state=52, shuffle= True)
+
+validation_files, test_files, validation_targets, test_targets = train_test_split(
+        rem_files, rem_targets, train_size=0.5, random_state=22, shuffle=True)
+
+print(train_files.shape, validation_files.shape, test_files.shape)
+print(train_targets.shape, validation_targets.shape, test_targets.shape)
+```
+
+**Modele giriş**
+
+Daha önce de söylediğimiz gibi, her biri 113x133 boyutunda veri yamalarını alıyoruz. Bu amaç için bir jeneratör fonksiyonu uygulanmaktadır.
 
 
