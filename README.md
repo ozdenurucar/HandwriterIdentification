@@ -267,5 +267,5 @@ model.load_weights('low_loss.hdf5')
 scores = model.evaluate_generator(test_generator,842) 
 print("Accuracy = ", scores[1])
 ```
-Oluşturulan bu Model ile %86 doğruluk değeri elde edilmiştir.
+Oluşturulan bu Model ile %88,26 doğruluk değeri elde edilmiştir.
 
