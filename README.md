@@ -240,4 +240,24 @@ model.add(Dense(num_classes,name='output'))
 model.add(Activation('softmax'))  #softmax since output is within 50 classes
 
 model.compile(loss='categorical_crossentropy', optimizer=Adam(), metrics=['accuracy'])
+model.summary()
+```
+
+```
+nb_epoch = 40
+
+samples_per_epoch = 3268
+nb_val_samples = 842
+
+# #save every model using Keras checkpoint
+from keras.callbacks import ModelCheckpoint
+#filepath="check-{epoch:02d}-{val_loss:.4f}.hdf5"
+filepath="low_loss.hdf5"
+checkpoint = ModelCheckpoint(filepath= filepath, verbose=1, save_best_only=False)
+callbacks_list = [checkpoint]
+
+# #Model fit generator
+history_object = model.fit_generator(train_generator, steps_per_epoch = samples_per_epoch/batch_size,
+                                      validation_data=validation_generator,
+                                      validation_steps=nb_val_samples, epochs=nb_epoch, verbose=1, callbacks=callbacks_list)
 ```
