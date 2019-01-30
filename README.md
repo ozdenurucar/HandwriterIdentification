@@ -107,6 +107,8 @@ for filename in img_files[:3]:
     plt.imshow(img, cmap ='gray')
 ```
 
+![](https://github.com/ozdenurucar/HandwriterIdentification/blob/master/Images/visualize.png)
+
 Kategorik veri olmadığını görmek güzel. Böylece normalizasyon etiket kodlayıcı kullanılarak yapılır.
 
 ```
