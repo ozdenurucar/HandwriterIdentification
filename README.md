@@ -33,6 +33,81 @@ Veri seti olarak verilen elyazıları öncelikle, satırlara ayrılır.
 Ayrılan satırlardan 113x113 boyutlarında parçalar çıkartılarak eğitim ve test için rastgele olarak bölünür.
 Ayrılan 113x113 boyutundaki parçalar resize() fonksiyonu ile program içerisinde 56x56 olarak yeniden boyutlandırılır. 
 Buradaki amaç hespalamayı kolaylaştırmaktır.
+
 ![](https://github.com/ozdenurucar/HandwriterIdentification/blob/master/Images/patchs.png)
+
+
+*Bu paketleri projeye aktarın.
+
+[source,python]
+```
+from __future__ import division
+import numpy as np
+import os
+import glob
+
+from random import *
+from PIL import Image
+from keras.utils import to_categorical
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+import pandas as pd
+import matplotlib.image as mpimg
+%matplotlib inline
+
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Flatten, Lambda, ELU, Activation, BatchNormalization
+from keras.layers.convolutional import Convolution2D, Cropping2D, ZeroPadding2D, MaxPooling2D
+from keras.preprocessing.image import ImageDataGenerator
+from keras.optimizers import SGD, Adam, RMSprop
+```
+Bunlar, veri kümesindeki her bir sütunda dosya adlarının değiştirilmesinden hızlı erişim için kullanılan formlardır. Form ve yazar eşleştirme ile bir dictionary oluşturalım.
+
+```
+d = {}
+from subprocess import check_output
+with open('drive/Colab_Kullanim/WriterIdentification/forms_for_parsing.txt') as f:
+    for line in f:
+        key = line.split(' ')[0]
+        writer = line.split(' ')[1]
+        d[key] = writer
+print(len(d.keys()))
+```
+Tüm dosya adları listesi ve hedef yazar adları listesi oluşturulur.
+
+```
+tmp = []
+target_list = []
+
+path_to_files = os.path.join('drive/Colab_Kullanim/WriterIdentification/data_subset', '*')
+for filename in sorted(glob.glob(path_to_files)):
+#     print(filename)
+    tmp.append(filename)
+    image_name = filename.split('/')[-1]
+    file, ext = os.path.splitext(image_name)
+    parts = file.split('-')
+    form = parts[0] + '-' + parts[1]
+    for key in d:
+        if key == form:
+            target_list.append(str(d[form]))
+
+img_files = np.asarray(tmp)
+img_targets = np.asarray(target_list)
+print(img_files.shape)
+print(img_targets.shape)
+```
+
+Görüntü verilerini görselleştirelim.
+
+```
+for filename in img_files[:3]:
+    img=mpimg.imread(filename)
+    plt.figure(figsize=(10,10))
+    plt.imshow(img, cmap ='gray')
+```
+
+Kategorik veri olmadığını görmek güzel. Böylece normalizasyon etiket kodlayıcı kullanılarak yapılır.
+
 
 
