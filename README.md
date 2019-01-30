@@ -261,3 +261,11 @@ history_object = model.fit_generator(train_generator, steps_per_epoch = samples_
                                       validation_data=validation_generator,
                                       validation_steps=nb_val_samples, epochs=nb_epoch, verbose=1, callbacks=callbacks_list)
 ```
+
+```
+model.load_weights('low_loss.hdf5')
+scores = model.evaluate_generator(test_generator,842) 
+print("Accuracy = ", scores[1])
+```
+Oluşturulan bu Model ile %86 doğruluk değeri elde edilmiştir.
+
