@@ -187,3 +187,57 @@ def generate_data(samples, target_files,  batch_size=batch_size, factor = 0.1 ):
             y_train = to_categorical(y_train, num_classes)
             yield shuffle(X_train, y_train)
 ```
+
+
+Eğitimin başlatılması
+
+```
+train_generator = generate_data(train_files, train_targets, batch_size=batch_size, factor = 0.1)
+validation_generator = generate_data(validation_files, validation_targets, batch_size=batch_size, factor = 0.1)
+test_generator = generate_data(test_files, test_targets, batch_size=batch_size, factor = 0.1)
+```
+Bir Keras Modeli kuruldu.Modelin özeti aşağıda gösterilmiştir.
+
+```
+def resize_image(image):
+    import tensorflow as tf
+    return tf.image.resize_images(image,[56,56])
+# Function to resize image to 64x64
+row, col, ch = 113, 113, 1
+model = Sequential()
+model.add(ZeroPadding2D((1, 1), input_shape=(row, col, ch)))
+
+# Resise data within the neural network
+model.add(Lambda(resize_image))  #resize images to allow for easy computation
+
+# CNN model - Building the model suggested in paper
+
+model.add(Convolution2D(filters= 96, kernel_size =(5,5), strides= (2,2), padding='same', name='conv1')) #96
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(3,3),strides=(2,2), name='pool1'))
+
+model.add(Convolution2D(filters= 256, kernel_size =(3,3), strides= (1,1), padding='same', name='conv2'))  #256
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(3,3),strides=(2,2), name='pool2'))
+
+model.add(Convolution2D(filters= 256, kernel_size =(3,3), strides= (1,1), padding='same', name='conv3'))  #256
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(3,3),strides=(2,2), name='pool3'))
+
+model.add(Flatten())
+model.add(Dropout(0.3))
+
+model.add(Dense(1024, name='dense1'))  #1024
+# model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Dropout(0.3))
+
+model.add(Dense(1024, name='dense2'))  #1024
+model.add(Activation('relu'))
+model.add(Dropout(0.3))
+
+model.add(Dense(num_classes,name='output'))
+model.add(Activation('softmax'))  #softmax since output is within 50 classes
+
+model.compile(loss='categorical_crossentropy', optimizer=Adam(), metrics=['accuracy'])
+```
